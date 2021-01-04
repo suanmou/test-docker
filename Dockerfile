@@ -1,12 +1,18 @@
-FROM circleci/node:latest-browsers
+# FROM circleci/node:latest-browsers
 
-WORKDIR /usr/src/app/
-USER root
-COPY package.json ./
-RUN yarn
+# WORKDIR /usr/src/app/
+# USER root
+# COPY package.json ./
+# RUN yarn
 
-COPY ./ ./
+# COPY ./ ./
 
-RUN npm run test:all
+# RUN npm run test:all
 
-CMD ["npm", "run", "build"]
+# CMD ["npm", "run", "build"]
+
+FROM nginx
+
+COPY ./dist/ /usr/share/nginx/html/
+
+EXPOSE 80
