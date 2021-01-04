@@ -1,0 +1,12 @@
+lanuguage: node_js
+node_js： 
+  - "12"
+services:
+  - docker
+before_install:
+  - npm install
+scripts:
+  - npm run build
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t test-docker-demo:lastest 
+  - docker push test-docker-demo:lastest 
